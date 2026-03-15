@@ -10,7 +10,7 @@ USE_SERIAL = False
 
 if USE_SERIAL:
     import serial
-    ser = serial.Serial("COM4",115200)
+    ser = serial.Serial("COM7",115200)
 
 # -----------------------------
 # MEDIAPIPE SETUP
