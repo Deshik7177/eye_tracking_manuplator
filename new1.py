@@ -4,14 +4,14 @@ import serial
 from collections import deque
 
 # --- CONFIGURATION ---
-# Ensure 'COM7' matches your actual port
+# Ensure '/dev/ttyUSB0' matches your actual port
 ser = None
 try:
-    ser = serial.Serial('COM7', 115200, timeout=1)
-    print("Serial connection established on COM7")
+    ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
+    print("Serial connection established on /dev/ttyUSB0")
 except Exception as e:
     print(f"ERROR: Serial Port not found. Check your connection. ({e})")
-    print("Make sure ESP32 is connected and COM7 is correct.")
+    print("Make sure ESP32 is connected and /dev/ttyUSB0 is correct.")
 
 BUFFER_SIZE = 5  # Reduced for faster response with less lag
 x_buffer = deque(maxlen=BUFFER_SIZE)           # Base rotation (center eye horizontal)
@@ -122,7 +122,7 @@ while cap.isOpened():
         
         # Y-axis (UP/DOWN) thresholds
         UP_THRESHOLD = 30      # DOWN triggers when smooth_y < this (lower = more sensitive)
-        DOWN_THRESHOLD = 80    # UP triggers when smooth_y > this (lower = more sensitive)
+        DOWN_THRESHOLD = 60    # UP triggers when smooth_y > this (lower = more sensitive)
         
         # X-axis zones (left/center/right)
         zone_x = 0
